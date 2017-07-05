@@ -1,0 +1,4 @@
+Resnet.ipynb
+*.pyc
+sample*
+tf_logs/*
