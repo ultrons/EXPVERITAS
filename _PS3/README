@@ -1,0 +1,25 @@
+######################
+# Run Instructions
+######################
+
+The Sumbmission contains following files:
+# Source Code
+ps3_v2.0.py
+ps3.py
+
+# Run script to execute for all the parts of programing assigment
+run.csh
+
+# Input Files
+ldpc36128.mat	
+ldpc361600.mat	
+
+# Ouputs/Graphs
+Graphs
+
+README		
+
+
+ps3_v2.0.py is the source code.
+
+ps3.py is an alternative implementation of mu message computations. (For review/remarks not grading)

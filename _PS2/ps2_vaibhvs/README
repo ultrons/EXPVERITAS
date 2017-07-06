@@ -1,0 +1,114 @@
+######################
+# Run Instructions
+######################
+
+The Sumbmission contains following files:
+
+README
+max_product_v2.0.py
+sum_product_v2.0.py 
+column.fa		
+multicolumn.fa
+bn.csv			
+bnalt.csv
+max_product_v1.0_nograding.py
+sum_product_v1.0_nograding.py 
+
+
+max_product_v2.0.py and sum_product_v2.0.py are the source codes.
+*.fa are the evidence data provided in the problem
+*.csv are ordered pair representation of the orginal tree and the alternative tree provided in the problem set
+
+max_product_v1.0_nograding.py, sum_product_v1.0_nograding.py are alternative implemenation of sum product and max product algorithms
+without using cliques or messages.
+It is presented only for review and feedback from examiners, in case it is inconvenient to review the addiational code please ignore *nograding.py versions.
+
+
+
+
+
+
+A/ 
+Junction Tree based implementation of sum product has been implemented in ./sum_product_v2.0.py
+It can be executed for single column evidence set as
+
+  ./sum_product_v2.0.py -t bn.csv -e column.fa
+
+It will print following ouputs:
+
+
+    ###############
+    Printing Message Table: Format: Message[from][to] ..{ Table}
+    -- <Printed on consol not repeated here>
+    
+    ###############
+    ObservationSet:  {'r4': 'C', 'r16': 'G', 'r6': 'G', 'r7': 'C', 'r12': 'A', 'r1': 'C', 'r2': 'T', 'r9': 'A', 'r18': 'A', 'r13': 'A'}
+    ###############
+    Liklihood:  1.3718658959e-07 -15.8019238699
+    ###############
+    Distribute Pass Complete ...
+    ###############
+    Posterior for Each of the Ancestor Node:
+    -- <Printed on consol not repeated here>
+    ###############
+    Highest probable Bases based on marginals for ancestors:
+    {'r10': 'A',
+     'r11': 'A',
+     'r14': 'A',
+     'r15': 'A',
+     'r17': 'A',
+     'r19': 'A',
+     'r3': 'C',
+     'r5': 'C',
+     'r8': 'G'}    
+    ###############
+    Total Likelihood considering all all observation Sts IID:  -15.8019238699
+
+    Likelihood value printed at the end corresponds to only one observation set (column.fa)
+
+B/ executing ./sum_product_v2.0.py -t bn.csv -e column.fa also computes marginal posterior of each ancesor node given the leaf (Observation Set)
+   And also most likely bases for each of the ancestor based on the marginal posteriors
+
+C/ Max product algorithm is implemented in ./max_product_v2.0.py, following are maximum probable bases for each of the nodes:
+    ###############
+    Highest probable Bases based on marginals for ancestors:
+    {'r10': 'A',
+     'r11': 'A',
+     'r14': 'A',
+     'r15': 'A',
+     'r17': 'A',
+     'r19': 'A',
+     'r3': 'C',
+     'r5': 'C',
+     'r8': 'A'}
+
+  Rest of the log for this script can be ignored.
+D/ To compute likelihood for multi-column data set execute: (Code of part A/ is reused with different inputs here).
+
+   ./sum_product_v2.0.py -t bn.csv -e multicolumn.fa 
+
+   ###############
+   Total Likelihood considering all all observation Sts IID:  -9379.70771125 
+
+E/ To compute log likelihood for the alternative tree (represented as bnalt.csv (converted from newick format)):
+
+   ./sum_product_v2.0.py -t bnalt.csv -e multicolumn.fa
+
+    ###############
+    Total Likelihood considering all all observation Sts IID:  -9474.43836219
+    
+    Based on likelihood the alternative tree fits the data better.
+
+F/ Generalization methods:
+   In the current framework we have only created model evaluation framework.
+   The clique based implementation (*_v2.0.py) are faster and more efficent than plain sum_product elemination or max_product elemination (*.v1.0*.py)
+    
+   There two important components:
+   Binary tree impelementation here is provide best case linear time execution for clique tree based method.
+   If the model starts to have more edges, it affects the time colplexity linearly.
+   It starts to have more than two elements in a clique, in which case marginal computation from clique beliefs becomes more and more expensive.
+
+   If the model start to have loopy belief scenario, then convergence is not guarateed (such use case in not handled by the current code.)
+    
+    
+
