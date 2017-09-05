@@ -1,2 +1,0 @@
-python -m cProfile  ./ps4_v2.0.py -n ./noisy_20.txt -o orig.txt  -g noisy_20.pdf
-python -m cProfile  ./ps4_v2.0.py -n ./noisy_10.txt -o orig.txt  -g noisy_10.pdf > noisy_10.log &
