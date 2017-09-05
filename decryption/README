@@ -1,0 +1,14 @@
+The source of this problem is one of the live demo in CS221 lectures by
+Percy Liang (Stanford University). Most of the utility function and general
+Structure of the code is borrow from Prof. Liangs implementation.
+
+Implementation of Forward backward Algorithm (for inference on HMM)
+has been developed independently.
+
+The goal of this experiment is to solve simple substitution cipher.
+The problem is set up as a Hidden-Markov-Model, where the latent vari-
+able represent the plain english characters and observed variables
+represent the encrypted characters. Transition probabilities correspond
+to bi-gram frequencies and emission probabilities corresponds to mapping
+between the english characters and corresonding substitution.
+
